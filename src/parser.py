@@ -30,6 +30,10 @@ def p_expresion_parentesis(p):
     'expresion : LPAREN expresion RPAREN'
     p[0] = p[2]
 
+def p_repeat(p):
+    'expresion : CHARS'
+    p[0] = str(p[1])
+
 def p_error(p):
     if p:
         print(f"Error de sintaxis en '{p.value}'")
