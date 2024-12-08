@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESLPAREN MINUS NUMBER PLUS RPAREN TIMESinicio : expresionexpresion : expresion PLUS expresion\n| expresion MINUS expresion\n| expresion TIMES expresionexpresion : NUMBERexpresion : LPAREN expresion RPAREN'
+_lr_signature = 'leftPLUSMINUSleftTIMESCHARS LPAREN MINUS NUMBER PLUS QUOTE RPAREN TIMESinicio : expresionexpresion : expresion PLUS expresion\n                | expresion MINUS expresion\n                | expresion TIMES expresionexpresion : NUMBERexpresion : LPAREN expresion RPARENexpresion : QUOTE expresion QUOTEexpresion : CHARS'
     
-_lr_action_items = {'NUMBER':([0,4,5,6,7,],[3,3,3,3,3,]),'LPAREN':([0,4,5,6,7,],[4,4,4,4,4,]),'$end':([1,2,3,9,10,11,12,],[0,-1,-5,-2,-3,-4,-6,]),'PLUS':([2,3,8,9,10,11,12,],[5,-5,5,-2,-3,-4,-6,]),'MINUS':([2,3,8,9,10,11,12,],[6,-5,6,-2,-3,-4,-6,]),'TIMES':([2,3,8,9,10,11,12,],[7,-5,7,7,7,-4,-6,]),'RPAREN':([3,8,9,10,11,12,],[-5,12,-2,-3,-4,-6,]),}
+_lr_action_items = {'NUMBER':([0,4,5,7,8,9,],[3,3,3,3,3,3,]),'LPAREN':([0,4,5,7,8,9,],[4,4,4,4,4,4,]),'QUOTE':([0,3,4,5,6,7,8,9,11,12,13,14,15,16,],[5,-5,5,5,-8,5,5,5,16,-2,-3,-4,-6,-7,]),'CHARS':([0,4,5,7,8,9,],[6,6,6,6,6,6,]),'$end':([1,2,3,6,12,13,14,15,16,],[0,-1,-5,-8,-2,-3,-4,-6,-7,]),'PLUS':([2,3,6,10,11,12,13,14,15,16,],[7,-5,-8,7,7,-2,-3,-4,-6,-7,]),'MINUS':([2,3,6,10,11,12,13,14,15,16,],[8,-5,-8,8,8,-2,-3,-4,-6,-7,]),'TIMES':([2,3,6,10,11,12,13,14,15,16,],[9,-5,-8,9,9,9,9,-4,-6,-7,]),'RPAREN':([3,6,10,12,13,14,15,16,],[-5,-8,15,-2,-3,-4,-6,-7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,4,5,6,7,],[2,8,9,10,11,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,4,5,7,8,9,],[2,10,11,12,13,14,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -33,4 +33,6 @@ _lr_productions = [
   ('expresion -> expresion TIMES expresion','expresion',3,'p_expresion_binaria','parser.py',17),
   ('expresion -> NUMBER','expresion',1,'p_expresion_numero','parser.py',26),
   ('expresion -> LPAREN expresion RPAREN','expresion',3,'p_expresion_parentesis','parser.py',30),
+  ('expresion -> QUOTE expresion QUOTE','expresion',3,'p_expresion_repeat','parser.py',34),
+  ('expresion -> CHARS','expresion',1,'p_repeat','parser.py',38),
 ]

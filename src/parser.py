@@ -29,6 +29,10 @@ def p_expresion_numero(p):
 def p_expresion_parentesis(p):
     'expresion : LPAREN expresion RPAREN'
     p[0] = p[2]
+    
+def p_expresion_repeat(p):
+    '''expresion : QUOTE expresion QUOTE'''
+    p[0] = str(p[2])
 
 def p_repeat(p):
     'expresion : CHARS'
