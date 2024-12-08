@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Expresiones</title>
+
+    <!-- Añadimos estilos básicos para mejorar la apariencia -->
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #61dafb;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 150px;
+            background-color: #1e2128;
+            color: #abb2bf;
+            border: 1px solid #61dafb;
+            padding: 10px;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            background-color: #61dafb;
+            color: #282c34;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        .console-output {
+            background-color: #1e2128;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+
+        .output-line {
+            margin-bottom: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>Analizador de Expresiones</h1>
+
+    <div class="form-container">
+        <form method="POST" action="/">
+            <textarea name="code" placeholder="Escribe tu expresión matemática aquí..."></textarea><br><br>
+            <button type="submit">Analizar</button>
+        </form>
+    </div>
+
+    <!-- Sección para mostrar la salida de la consola -->
+    <div class="console-output">
+        <h3>Análisis Léxico:</h3>
+        {% if result %}
+        <div class="output-line">Tokens encontrados:</div>
+        <pre>{{ result.lexical }}</pre>
+        
+        <h3>Análisis Sintáctico:</h3>
+        <div class="output-line">Árbol de Sintaxis:</div>
+        <pre>{{ result.syntax }}</pre>
+        
+        <h3>Resultado Final:</h3>
+        <div class="output-line">Resultado de la operación:</div>
+        <pre>{{ result.operation }}</pre>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> inicio
+Rule 1     inicio -> expresion
+Rule 2     expresion -> expresion PLUS expresion
+Rule 3     expresion -> expresion MINUS expresion
+Rule 4     expresion -> expresion TIMES expresion
+Rule 5     expresion -> NUMBER
+Rule 6     expresion -> LPAREN expresion RPAREN
+
+Terminals, with rules where they appear
+
+LPAREN               : 6
+MINUS                : 3
+NUMBER               : 5
+PLUS                 : 2
+RPAREN               : 6
+TIMES                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 1 2 2 3 3 4 4 6
+inicio               : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . inicio
+    (1) inicio -> . expresion
+    (2) expresion -> . expresion PLUS expresion
+    (3) expresion -> . expresion MINUS expresion
+    (4) expresion -> . expresion TIMES expresion
+    (5) expresion -> . NUMBER
+    (6) expresion -> . LPAREN expresion RPAREN
+
+    NUMBER          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+    inicio                         shift and go to state 1
+    expresion                      shift and go to state 2
+
+state 1
+
+    (0) S' -> inicio .
+
+
+
+state 2
+
+    (1) inicio -> expresion .
+    (2) expresion -> expresion . PLUS expresion
+    (3) expresion -> expresion . MINUS expresion
+    (4) expresion -> expresion . TIMES expresion
+
+    $end            reduce using rule 1 (inicio -> expresion .)
+    PLUS            shift and go to state 5
+    MINUS           shift and go to state 6
+    TIMES           shift and go to state 7
+
+
+state 3
+
+    (5) expresion -> NUMBER .
+
+    PLUS            reduce using rule 5 (expresion -> NUMBER .)
+    MINUS           reduce using rule 5 (expresion -> NUMBER .)
+    TIMES           reduce using rule 5 (expresion -> NUMBER .)
+    $end            reduce using rule 5 (expresion -> NUMBER .)
+    RPAREN          reduce using rule 5 (expresion -> NUMBER .)
+
+
+state 4
+
+    (6) expresion -> LPAREN . expresion RPAREN
+    (2) expresion -> . expresion PLUS expresion
+    (3) expresion -> . expresion MINUS expresion
+    (4) expresion -> . expresion TIMES expresion
+    (5) expresion -> . NUMBER
+    (6) expresion -> . LPAREN expresion RPAREN
+
+    NUMBER          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+    expresion                      shift and go to state 8
+
+state 5
+
+    (2) expresion -> expresion PLUS . expresion
+    (2) expresion -> . expresion PLUS expresion
+    (3) expresion -> . expresion MINUS expresion
+    (4) expresion -> . expresion TIMES expresion
+    (5) expresion -> . NUMBER
+    (6) expresion -> . LPAREN expresion RPAREN
+
+    NUMBER          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+    expresion                      shift and go to state 9
+
+state 6
+
+    (3) expresion -> expresion MINUS . expresion
+    (2) expresion -> . expresion PLUS expresion
+    (3) expresion -> . expresion MINUS expresion
+    (4) expresion -> . expresion TIMES expresion
+    (5) expresion -> . NUMBER
+    (6) expresion -> . LPAREN expresion RPAREN
+
+    NUMBER          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+    expresion                      shift and go to state 10
+
+state 7
+
+    (4) expresion -> expresion TIMES . expresion
+    (2) expresion -> . expresion PLUS expresion
+    (3) expresion -> . expresion MINUS expresion
+    (4) expresion -> . expresion TIMES expresion
+    (5) expresion -> . NUMBER
+    (6) expresion -> . LPAREN expresion RPAREN
+
+    NUMBER          shift and go to state 3
+    LPAREN          shift and go to state 4
+
+    expresion                      shift and go to state 11
+
+state 8
+
+    (6) expresion -> LPAREN expresion . RPAREN
+    (2) expresion -> expresion . PLUS expresion
+    (3) expresion -> expresion . MINUS expresion
+    (4) expresion -> expresion . TIMES expresion
+
+    RPAREN          shift and go to state 12
+    PLUS            shift and go to state 5
+    MINUS           shift and go to state 6
+    TIMES           shift and go to state 7
+
+
+state 9
+
+    (2) expresion -> expresion PLUS expresion .
+    (2) expresion -> expresion . PLUS expresion
+    (3) expresion -> expresion . MINUS expresion
+    (4) expresion -> expresion . TIMES expresion
+
+    PLUS            reduce using rule 2 (expresion -> expresion PLUS expresion .)
+    MINUS           reduce using rule 2 (expresion -> expresion PLUS expresion .)
+    $end            reduce using rule 2 (expresion -> expresion PLUS expresion .)
+    RPAREN          reduce using rule 2 (expresion -> expresion PLUS expresion .)
+    TIMES           shift and go to state 7
+
+  ! TIMES           [ reduce using rule 2 (expresion -> expresion PLUS expresion .) ]
+  ! PLUS            [ shift and go to state 5 ]
+  ! MINUS           [ shift and go to state 6 ]
+
+
+state 10
+
+    (3) expresion -> expresion MINUS expresion .
+    (2) expresion -> expresion . PLUS expresion
+    (3) expresion -> expresion . MINUS expresion
+    (4) expresion -> expresion . TIMES expresion
+
+    PLUS            reduce using rule 3 (expresion -> expresion MINUS expresion .)
+    MINUS           reduce using rule 3 (expresion -> expresion MINUS expresion .)
+    $end            reduce using rule 3 (expresion -> expresion MINUS expresion .)
+    RPAREN          reduce using rule 3 (expresion -> expresion MINUS expresion .)
+    TIMES           shift and go to state 7
+
+  ! TIMES           [ reduce using rule 3 (expresion -> expresion MINUS expresion .) ]
+  ! PLUS            [ shift and go to state 5 ]
+  ! MINUS           [ shift and go to state 6 ]
+
+
+state 11
+
+    (4) expresion -> expresion TIMES expresion .
+    (2) expresion -> expresion . PLUS expresion
+    (3) expresion -> expresion . MINUS expresion
+    (4) expresion -> expresion . TIMES expresion
+
+    PLUS            reduce using rule 4 (expresion -> expresion TIMES expresion .)
+    MINUS           reduce using rule 4 (expresion -> expresion TIMES expresion .)
+    TIMES           reduce using rule 4 (expresion -> expresion TIMES expresion .)
+    $end            reduce using rule 4 (expresion -> expresion TIMES expresion .)
+    RPAREN          reduce using rule 4 (expresion -> expresion TIMES expresion .)
+
+  ! PLUS            [ shift and go to state 5 ]
+  ! MINUS           [ shift and go to state 6 ]
+  ! TIMES           [ shift and go to state 7 ]
+
+
+state 12
+
+    (6) expresion -> LPAREN expresion RPAREN .
+
+    PLUS            reduce using rule 6 (expresion -> LPAREN expresion RPAREN .)
+    MINUS           reduce using rule 6 (expresion -> LPAREN expresion RPAREN .)
+    TIMES           reduce using rule 6 (expresion -> LPAREN expresion RPAREN .)
+    $end            reduce using rule 6 (expresion -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 6 (expresion -> LPAREN expresion RPAREN .)
+
