@@ -2,7 +2,7 @@ import ply.lex as lex
 
 # Lista de tokens
 tokens = (
-    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS'
+    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE'
     # Si necesitas agregar más tokens, puedes hacerlo aquí:
     # 'DIVIDE'  # Por ejemplo, para la división
 )
@@ -14,7 +14,8 @@ t_TIMES = r'\*'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_NUMBER = r'\d+'
-t_CHARS = r'[a-zA-Z]+'
+t_CHARS = r'([a-zA-Z]+\s*)+'
+t_QUOTE = r'\''
 
 # Si necesitas agregar más tokens, puedes agregar las reglas aquí.
 # Ejemplo de un token para la división:
