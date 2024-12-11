@@ -5,6 +5,7 @@ from lexico import tokens, lexer
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES'),
+    ('left', 'CONCAT'),  # Agregar precedencia para concatenación
 )
 
 def p_inicio(p):
@@ -21,6 +22,11 @@ def p_expresion_binaria(p):
         p[0] = p[1] - p[3]
     elif p[2] == '*':
         p[0] = p[1] * p[3]
+        
+# Nueva regla para concatenación
+def p_expresion_concatenacion(p):
+    '''expresion : expresion CONCAT expresion'''
+    p[0] = p[1] + p[3]  # Concatenamos las cadenas
 
 def p_expresion_numero(p):
     'expresion : NUMBER'
@@ -44,6 +50,7 @@ def p_error(p):
     else:
         print("Error de sintaxis al final de la entrada")
 
+#construcción del parser
 parser = yacc.yacc()
 
 def analizar(input_string):
