@@ -28,6 +28,11 @@ def p_expresion_concatenacion(p):
     '''expresion : expresion CONCAT expresion'''
     p[0] = p[1] + p[3]  # Concatenamos las cadenas
 
+def p_expresion_imprimir(p):
+    '''expresion : IMPRIMIRRESULTADO LPAREN expresion RPAREN'''
+    print(f"Resultado: {p[3]}")  # Imprime el resultado.
+    p[0] = p[3]  # Devuelve el valor de la expresión. 
+
 def p_expresion_numero(p):
     'expresion : NUMBER'
     p[0] = int(p[1])

@@ -2,7 +2,7 @@ import ply.lex as lex
 
 # Lista de tokens
 tokens = (
-    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT'
+    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO'
     # Si necesitas agregar más tokens, puedes hacerlo aquí:
     # 'DIVIDE'  # Por ejemplo, para la división
 )
@@ -17,6 +17,8 @@ t_NUMBER = r'\d+'
 t_CHARS = r'([a-zA-Z]+\s*)+'  # Palabras con letras y posibles espacios
 t_QUOTE = r'\''    # Comillas simples
 t_CONCAT = r'&'  # Símbolo de concatenación
+t_IMPRIMIRRESULTADO = r'ImprimirResultado'
+
 
 # Si necesitas agregar más tokens, puedes agregar las reglas aquí.
 # Ejemplo de un token para la división:
