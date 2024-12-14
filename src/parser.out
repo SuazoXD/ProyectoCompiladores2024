@@ -1,0 +1,781 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> inicio
+Rule 1     inicio -> expresion
+Rule 2     inicio -> inicio expresion
+Rule 3     expresion -> expresion PLUS expresion
+Rule 4     expresion -> expresion MINUS expresion
+Rule 5     expresion -> expresion TIMES expresion
+Rule 6     expresion -> expresion DIVIDE expresion
+Rule 7     expresion -> ID ASSIGN expresion
+Rule 8     expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN
+Rule 9     expresion -> CONCAT LPAREN lista_expresiones RPAREN
+Rule 10    lista_expresiones -> expresion
+Rule 11    lista_expresiones -> lista_expresiones COMA expresion
+Rule 12    expresion -> ID
+Rule 13    expresion -> QUOTE CHARS QUOTE
+Rule 14    expresion -> NUMBER
+Rule 15    expresion -> LPAREN expresion RPAREN
+Rule 16    expresion -> CHARS
+
+Terminals, with rules where they appear
+
+ASSIGN               : 7
+CHARS                : 13 16
+COMA                 : 11
+CONCAT               : 9
+DIVIDE               : 6
+ID                   : 7 12
+IMPRIMIRRESULTADO    : 8
+LPAREN               : 8 9 15
+MINUS                : 4
+NUMBER               : 14
+PLUS                 : 3
+QUOTE                : 13 13
+RPAREN               : 8 9 15
+TIMES                : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 1 2 3 3 4 4 5 5 6 6 7 8 10 11 15
+inicio               : 2 0
+lista_expresiones    : 9 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . inicio
+    (1) inicio -> . expresion
+    (2) inicio -> . inicio expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    inicio                         shift and go to state 1
+    expresion                      shift and go to state 2
+
+state 1
+
+    (0) S' -> inicio .
+    (2) inicio -> inicio . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 10
+
+state 2
+
+    (1) inicio -> expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    ID              reduce using rule 1 (inicio -> expresion .)
+    IMPRIMIRRESULTADO reduce using rule 1 (inicio -> expresion .)
+    CONCAT          reduce using rule 1 (inicio -> expresion .)
+    QUOTE           reduce using rule 1 (inicio -> expresion .)
+    NUMBER          reduce using rule 1 (inicio -> expresion .)
+    LPAREN          reduce using rule 1 (inicio -> expresion .)
+    CHARS           reduce using rule 1 (inicio -> expresion .)
+    $end            reduce using rule 1 (inicio -> expresion .)
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+
+state 3
+
+    (7) expresion -> ID . ASSIGN expresion
+    (12) expresion -> ID .
+
+    ASSIGN          shift and go to state 15
+    PLUS            reduce using rule 12 (expresion -> ID .)
+    MINUS           reduce using rule 12 (expresion -> ID .)
+    TIMES           reduce using rule 12 (expresion -> ID .)
+    DIVIDE          reduce using rule 12 (expresion -> ID .)
+    ID              reduce using rule 12 (expresion -> ID .)
+    IMPRIMIRRESULTADO reduce using rule 12 (expresion -> ID .)
+    CONCAT          reduce using rule 12 (expresion -> ID .)
+    QUOTE           reduce using rule 12 (expresion -> ID .)
+    NUMBER          reduce using rule 12 (expresion -> ID .)
+    LPAREN          reduce using rule 12 (expresion -> ID .)
+    CHARS           reduce using rule 12 (expresion -> ID .)
+    $end            reduce using rule 12 (expresion -> ID .)
+    RPAREN          reduce using rule 12 (expresion -> ID .)
+    COMA            reduce using rule 12 (expresion -> ID .)
+
+
+state 4
+
+    (8) expresion -> IMPRIMIRRESULTADO . LPAREN expresion RPAREN
+
+    LPAREN          shift and go to state 16
+
+
+state 5
+
+    (15) expresion -> LPAREN . expresion RPAREN
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 17
+
+state 6
+
+    (9) expresion -> CONCAT . LPAREN lista_expresiones RPAREN
+
+    LPAREN          shift and go to state 18
+
+
+state 7
+
+    (13) expresion -> QUOTE . CHARS QUOTE
+
+    CHARS           shift and go to state 19
+
+
+state 8
+
+    (16) expresion -> CHARS .
+
+    PLUS            reduce using rule 16 (expresion -> CHARS .)
+    MINUS           reduce using rule 16 (expresion -> CHARS .)
+    TIMES           reduce using rule 16 (expresion -> CHARS .)
+    DIVIDE          reduce using rule 16 (expresion -> CHARS .)
+    ID              reduce using rule 16 (expresion -> CHARS .)
+    IMPRIMIRRESULTADO reduce using rule 16 (expresion -> CHARS .)
+    CONCAT          reduce using rule 16 (expresion -> CHARS .)
+    QUOTE           reduce using rule 16 (expresion -> CHARS .)
+    NUMBER          reduce using rule 16 (expresion -> CHARS .)
+    LPAREN          reduce using rule 16 (expresion -> CHARS .)
+    CHARS           reduce using rule 16 (expresion -> CHARS .)
+    $end            reduce using rule 16 (expresion -> CHARS .)
+    RPAREN          reduce using rule 16 (expresion -> CHARS .)
+    COMA            reduce using rule 16 (expresion -> CHARS .)
+
+
+state 9
+
+    (14) expresion -> NUMBER .
+
+    PLUS            reduce using rule 14 (expresion -> NUMBER .)
+    MINUS           reduce using rule 14 (expresion -> NUMBER .)
+    TIMES           reduce using rule 14 (expresion -> NUMBER .)
+    DIVIDE          reduce using rule 14 (expresion -> NUMBER .)
+    ID              reduce using rule 14 (expresion -> NUMBER .)
+    IMPRIMIRRESULTADO reduce using rule 14 (expresion -> NUMBER .)
+    CONCAT          reduce using rule 14 (expresion -> NUMBER .)
+    QUOTE           reduce using rule 14 (expresion -> NUMBER .)
+    NUMBER          reduce using rule 14 (expresion -> NUMBER .)
+    LPAREN          reduce using rule 14 (expresion -> NUMBER .)
+    CHARS           reduce using rule 14 (expresion -> NUMBER .)
+    $end            reduce using rule 14 (expresion -> NUMBER .)
+    RPAREN          reduce using rule 14 (expresion -> NUMBER .)
+    COMA            reduce using rule 14 (expresion -> NUMBER .)
+
+
+state 10
+
+    (2) inicio -> inicio expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    ID              reduce using rule 2 (inicio -> inicio expresion .)
+    IMPRIMIRRESULTADO reduce using rule 2 (inicio -> inicio expresion .)
+    CONCAT          reduce using rule 2 (inicio -> inicio expresion .)
+    QUOTE           reduce using rule 2 (inicio -> inicio expresion .)
+    NUMBER          reduce using rule 2 (inicio -> inicio expresion .)
+    LPAREN          reduce using rule 2 (inicio -> inicio expresion .)
+    CHARS           reduce using rule 2 (inicio -> inicio expresion .)
+    $end            reduce using rule 2 (inicio -> inicio expresion .)
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+
+state 11
+
+    (3) expresion -> expresion PLUS . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 20
+
+state 12
+
+    (4) expresion -> expresion MINUS . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 21
+
+state 13
+
+    (5) expresion -> expresion TIMES . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 22
+
+state 14
+
+    (6) expresion -> expresion DIVIDE . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 23
+
+state 15
+
+    (7) expresion -> ID ASSIGN . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 24
+
+state 16
+
+    (8) expresion -> IMPRIMIRRESULTADO LPAREN . expresion RPAREN
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 25
+
+state 17
+
+    (15) expresion -> LPAREN expresion . RPAREN
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    RPAREN          shift and go to state 26
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+
+state 18
+
+    (9) expresion -> CONCAT LPAREN . lista_expresiones RPAREN
+    (10) lista_expresiones -> . expresion
+    (11) lista_expresiones -> . lista_expresiones COMA expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    lista_expresiones              shift and go to state 27
+    expresion                      shift and go to state 28
+
+state 19
+
+    (13) expresion -> QUOTE CHARS . QUOTE
+
+    QUOTE           shift and go to state 29
+
+
+state 20
+
+    (3) expresion -> expresion PLUS expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    PLUS            reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    MINUS           reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    ID              reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    IMPRIMIRRESULTADO reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    CONCAT          reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    QUOTE           reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    NUMBER          reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    LPAREN          reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    CHARS           reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    $end            reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    RPAREN          reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    COMA            reduce using rule 3 (expresion -> expresion PLUS expresion .)
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+  ! TIMES           [ reduce using rule 3 (expresion -> expresion PLUS expresion .) ]
+  ! DIVIDE          [ reduce using rule 3 (expresion -> expresion PLUS expresion .) ]
+  ! PLUS            [ shift and go to state 11 ]
+  ! MINUS           [ shift and go to state 12 ]
+
+
+state 21
+
+    (4) expresion -> expresion MINUS expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    PLUS            reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    MINUS           reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    ID              reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    IMPRIMIRRESULTADO reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    CONCAT          reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    QUOTE           reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    NUMBER          reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    LPAREN          reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    CHARS           reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    $end            reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    RPAREN          reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    COMA            reduce using rule 4 (expresion -> expresion MINUS expresion .)
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+  ! TIMES           [ reduce using rule 4 (expresion -> expresion MINUS expresion .) ]
+  ! DIVIDE          [ reduce using rule 4 (expresion -> expresion MINUS expresion .) ]
+  ! PLUS            [ shift and go to state 11 ]
+  ! MINUS           [ shift and go to state 12 ]
+
+
+state 22
+
+    (5) expresion -> expresion TIMES expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    PLUS            reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    MINUS           reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    TIMES           reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    DIVIDE          reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    ID              reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    IMPRIMIRRESULTADO reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    CONCAT          reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    QUOTE           reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    NUMBER          reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    LPAREN          reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    CHARS           reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    $end            reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    RPAREN          reduce using rule 5 (expresion -> expresion TIMES expresion .)
+    COMA            reduce using rule 5 (expresion -> expresion TIMES expresion .)
+
+  ! PLUS            [ shift and go to state 11 ]
+  ! MINUS           [ shift and go to state 12 ]
+  ! TIMES           [ shift and go to state 13 ]
+  ! DIVIDE          [ shift and go to state 14 ]
+
+
+state 23
+
+    (6) expresion -> expresion DIVIDE expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    PLUS            reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    MINUS           reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    TIMES           reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    DIVIDE          reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    ID              reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    IMPRIMIRRESULTADO reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    CONCAT          reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    QUOTE           reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    NUMBER          reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    LPAREN          reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    CHARS           reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    $end            reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    RPAREN          reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+    COMA            reduce using rule 6 (expresion -> expresion DIVIDE expresion .)
+
+  ! PLUS            [ shift and go to state 11 ]
+  ! MINUS           [ shift and go to state 12 ]
+  ! TIMES           [ shift and go to state 13 ]
+  ! DIVIDE          [ shift and go to state 14 ]
+
+
+state 24
+
+    (7) expresion -> ID ASSIGN expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    ID              reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    IMPRIMIRRESULTADO reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    CONCAT          reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    QUOTE           reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    NUMBER          reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    LPAREN          reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    CHARS           reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    $end            reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    RPAREN          reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    COMA            reduce using rule 7 (expresion -> ID ASSIGN expresion .)
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+  ! PLUS            [ reduce using rule 7 (expresion -> ID ASSIGN expresion .) ]
+  ! MINUS           [ reduce using rule 7 (expresion -> ID ASSIGN expresion .) ]
+  ! TIMES           [ reduce using rule 7 (expresion -> ID ASSIGN expresion .) ]
+  ! DIVIDE          [ reduce using rule 7 (expresion -> ID ASSIGN expresion .) ]
+
+
+state 25
+
+    (8) expresion -> IMPRIMIRRESULTADO LPAREN expresion . RPAREN
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    RPAREN          shift and go to state 30
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+
+state 26
+
+    (15) expresion -> LPAREN expresion RPAREN .
+
+    PLUS            reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    MINUS           reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    TIMES           reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    DIVIDE          reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    ID              reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    IMPRIMIRRESULTADO reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    CONCAT          reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    QUOTE           reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    NUMBER          reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    LPAREN          reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    CHARS           reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    $end            reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+    COMA            reduce using rule 15 (expresion -> LPAREN expresion RPAREN .)
+
+
+state 27
+
+    (9) expresion -> CONCAT LPAREN lista_expresiones . RPAREN
+    (11) lista_expresiones -> lista_expresiones . COMA expresion
+
+    RPAREN          shift and go to state 31
+    COMA            shift and go to state 32
+
+
+state 28
+
+    (10) lista_expresiones -> expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    RPAREN          reduce using rule 10 (lista_expresiones -> expresion .)
+    COMA            reduce using rule 10 (lista_expresiones -> expresion .)
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+
+state 29
+
+    (13) expresion -> QUOTE CHARS QUOTE .
+
+    PLUS            reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    MINUS           reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    TIMES           reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    DIVIDE          reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    ID              reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    IMPRIMIRRESULTADO reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    CONCAT          reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    QUOTE           reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    NUMBER          reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    LPAREN          reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    CHARS           reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    $end            reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    RPAREN          reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+    COMA            reduce using rule 13 (expresion -> QUOTE CHARS QUOTE .)
+
+
+state 30
+
+    (8) expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .
+
+    PLUS            reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    MINUS           reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    TIMES           reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    DIVIDE          reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    ID              reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    IMPRIMIRRESULTADO reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    CONCAT          reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    QUOTE           reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    NUMBER          reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    LPAREN          reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    CHARS           reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    $end            reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+    COMA            reduce using rule 8 (expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN .)
+
+
+state 31
+
+    (9) expresion -> CONCAT LPAREN lista_expresiones RPAREN .
+
+    PLUS            reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    MINUS           reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    TIMES           reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    DIVIDE          reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    ID              reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    IMPRIMIRRESULTADO reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    CONCAT          reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    QUOTE           reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    NUMBER          reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    LPAREN          reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    CHARS           reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    $end            reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    RPAREN          reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+    COMA            reduce using rule 9 (expresion -> CONCAT LPAREN lista_expresiones RPAREN .)
+
+
+state 32
+
+    (11) lista_expresiones -> lista_expresiones COMA . expresion
+    (3) expresion -> . expresion PLUS expresion
+    (4) expresion -> . expresion MINUS expresion
+    (5) expresion -> . expresion TIMES expresion
+    (6) expresion -> . expresion DIVIDE expresion
+    (7) expresion -> . ID ASSIGN expresion
+    (8) expresion -> . IMPRIMIRRESULTADO LPAREN expresion RPAREN
+    (9) expresion -> . CONCAT LPAREN lista_expresiones RPAREN
+    (12) expresion -> . ID
+    (13) expresion -> . QUOTE CHARS QUOTE
+    (14) expresion -> . NUMBER
+    (15) expresion -> . LPAREN expresion RPAREN
+    (16) expresion -> . CHARS
+
+    ID              shift and go to state 3
+    IMPRIMIRRESULTADO shift and go to state 4
+    CONCAT          shift and go to state 6
+    QUOTE           shift and go to state 7
+    NUMBER          shift and go to state 9
+    LPAREN          shift and go to state 5
+    CHARS           shift and go to state 8
+
+    expresion                      shift and go to state 33
+
+state 33
+
+    (11) lista_expresiones -> lista_expresiones COMA expresion .
+    (3) expresion -> expresion . PLUS expresion
+    (4) expresion -> expresion . MINUS expresion
+    (5) expresion -> expresion . TIMES expresion
+    (6) expresion -> expresion . DIVIDE expresion
+
+    RPAREN          reduce using rule 11 (lista_expresiones -> lista_expresiones COMA expresion .)
+    COMA            reduce using rule 11 (lista_expresiones -> lista_expresiones COMA expresion .)
+    PLUS            shift and go to state 11
+    MINUS           shift and go to state 12
+    TIMES           shift and go to state 13
+    DIVIDE          shift and go to state 14
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 24 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 24 resolved as shift
