@@ -2,30 +2,27 @@ import ply.lex as lex
 
 # Lista de tokens
 tokens = (
-    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO'
-    # Si necesitas agregar más tokens, puedes hacerlo aquí:
-    # 'DIVIDE'  # Por ejemplo, para la división
+    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 
+    'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO', 
+    'DIVIDE', 'VARIABLE', 'ASSIGN'
 )
 
 # Reglas de los tokens
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
+t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_NUMBER = r'\d+'
-t_CHARS = r'([a-zA-Z]+\s*)+'  # Palabras con letras y posibles espacios
-t_QUOTE = r'\''    # Comillas simples
-t_CONCAT = r'&'  # Símbolo de concatenación
+t_CHARS = r'[a-zA-Z ]+'  # Permitir letras y espacios
+t_QUOTE = r'\''
+t_CONCAT = r'&'
 t_IMPRIMIRRESULTADO = r'ImprimirResultado'
-
-
-# Si necesitas agregar más tokens, puedes agregar las reglas aquí.
-# Ejemplo de un token para la división:
-# t_DIVIDE = r'\/'
+t_ASSIGN = r'='  # Regla para asignación
 
 # Regla de ignorar espacios en blanco
-t_ignore = ' \t'
+t_ignore = ' \t\n'
 
 # Manejo de errores
 def t_error(t):
@@ -35,12 +32,3 @@ def t_error(t):
 # Construir el lexer
 lexer = lex.lex()
 
-if __name__ == "__main__":
-    data = '3 + 4 * (5 - 2)'  # Ejemplo de entrada
-    lexer.input(data)
-
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(f"Tipo de Token: {tok.type}, Valor: {tok.value}")

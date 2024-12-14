@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESleftCONCATCHARS CONCAT IMPRIMIRRESULTADO LPAREN MINUS NUMBER PLUS QUOTE RPAREN TIMESinicio : expresionexpresion : expresion PLUS expresion\n| expresion MINUS expresion\n| expresion TIMES expresionexpresion : expresion CONCAT expresionexpresion : IMPRIMIRRESULTADO LPAREN expresion RPARENexpresion : NUMBERexpresion : LPAREN expresion RPARENexpresion : QUOTE expresion QUOTEexpresion : CHARS'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEleftCONCATASSIGN CHARS CONCAT DIVIDE IMPRIMIRRESULTADO LPAREN MINUS NUMBER PLUS QUOTE RPAREN TIMES VARIABLEinicio : expresionexpresion : expresion PLUS expresion\n| expresion MINUS expresion\n| expresion TIMES expresion\n| expresion DIVIDE expresionexpresion : expresion CONCAT expresionexpresion : IMPRIMIRRESULTADO LPAREN expresion RPARENexpresion : NUMBERexpresion : LPAREN expresion RPARENexpresion : QUOTE expresion QUOTEexpresion : CHARS'
     
-_lr_action_items = {'IMPRIMIRRESULTADO':([0,4,6,8,9,10,11,12,],[3,3,3,3,3,3,3,3,]),'NUMBER':([0,4,6,8,9,10,11,12,],[5,5,5,5,5,5,5,5,]),'LPAREN':([0,3,4,6,8,9,10,11,12,],[4,12,4,4,4,4,4,4,4,]),'QUOTE':([0,4,5,6,7,8,9,10,11,12,14,15,16,17,18,20,21,22,],[6,6,-7,6,-10,6,6,6,6,6,21,-2,-3,-4,-5,-8,-9,-6,]),'CHARS':([0,4,6,8,9,10,11,12,],[7,7,7,7,7,7,7,7,]),'$end':([1,2,5,7,15,16,17,18,20,21,22,],[0,-1,-7,-10,-2,-3,-4,-5,-8,-9,-6,]),'PLUS':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[8,-7,-10,8,8,-2,-3,-4,-5,8,-8,-9,-6,]),'MINUS':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[9,-7,-10,9,9,-2,-3,-4,-5,9,-8,-9,-6,]),'TIMES':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[10,-7,-10,10,10,10,10,-4,-5,10,-8,-9,-6,]),'CONCAT':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[11,-7,-10,11,11,11,11,11,-5,11,-8,-9,-6,]),'RPAREN':([5,7,13,15,16,17,18,19,20,21,22,],[-7,-10,20,-2,-3,-4,-5,22,-8,-9,-6,]),}
+_lr_action_items = {'IMPRIMIRRESULTADO':([0,4,6,8,9,10,11,12,13,],[3,3,3,3,3,3,3,3,3,]),'NUMBER':([0,4,6,8,9,10,11,12,13,],[5,5,5,5,5,5,5,5,5,]),'LPAREN':([0,3,4,6,8,9,10,11,12,13,],[4,13,4,4,4,4,4,4,4,4,]),'QUOTE':([0,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,20,22,23,24,],[6,6,-8,6,-11,6,6,6,6,6,6,23,-2,-3,-4,-5,-6,-9,-10,-7,]),'CHARS':([0,4,6,8,9,10,11,12,13,],[7,7,7,7,7,7,7,7,7,]),'$end':([1,2,5,7,16,17,18,19,20,22,23,24,],[0,-1,-8,-11,-2,-3,-4,-5,-6,-9,-10,-7,]),'PLUS':([2,5,7,14,15,16,17,18,19,20,21,22,23,24,],[8,-8,-11,8,8,-2,-3,-4,-5,-6,8,-9,-10,-7,]),'MINUS':([2,5,7,14,15,16,17,18,19,20,21,22,23,24,],[9,-8,-11,9,9,-2,-3,-4,-5,-6,9,-9,-10,-7,]),'TIMES':([2,5,7,14,15,16,17,18,19,20,21,22,23,24,],[10,-8,-11,10,10,10,10,-4,-5,-6,10,-9,-10,-7,]),'DIVIDE':([2,5,7,14,15,16,17,18,19,20,21,22,23,24,],[11,-8,-11,11,11,11,11,-4,-5,-6,11,-9,-10,-7,]),'CONCAT':([2,5,7,14,15,16,17,18,19,20,21,22,23,24,],[12,-8,-11,12,12,12,12,12,12,-6,12,-9,-10,-7,]),'RPAREN':([5,7,14,16,17,18,19,20,21,22,23,24,],[-8,-11,22,-2,-3,-4,-5,-6,24,-9,-10,-7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,4,6,8,9,10,11,12,],[2,13,14,15,16,17,18,19,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,4,6,8,9,10,11,12,13,],[2,14,15,16,17,18,19,20,21,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,14 +27,15 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> inicio","S'",1,None,None,None),
-  ('inicio -> expresion','inicio',1,'p_inicio','parser.py',12),
-  ('expresion -> expresion PLUS expresion','expresion',3,'p_expresion_binaria','parser.py',16),
-  ('expresion -> expresion MINUS expresion','expresion',3,'p_expresion_binaria','parser.py',17),
-  ('expresion -> expresion TIMES expresion','expresion',3,'p_expresion_binaria','parser.py',18),
-  ('expresion -> expresion CONCAT expresion','expresion',3,'p_expresion_concatenacion','parser.py',28),
-  ('expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN','expresion',4,'p_expresion_imprimir','parser.py',32),
-  ('expresion -> NUMBER','expresion',1,'p_expresion_numero','parser.py',37),
-  ('expresion -> LPAREN expresion RPAREN','expresion',3,'p_expresion_parentesis','parser.py',41),
-  ('expresion -> QUOTE expresion QUOTE','expresion',3,'p_expresion_repeat','parser.py',45),
-  ('expresion -> CHARS','expresion',1,'p_repeat','parser.py',49),
+  ('inicio -> expresion','inicio',1,'p_inicio','parser.py',13),
+  ('expresion -> expresion PLUS expresion','expresion',3,'p_expresion_binaria','parser.py',17),
+  ('expresion -> expresion MINUS expresion','expresion',3,'p_expresion_binaria','parser.py',18),
+  ('expresion -> expresion TIMES expresion','expresion',3,'p_expresion_binaria','parser.py',19),
+  ('expresion -> expresion DIVIDE expresion','expresion',3,'p_expresion_binaria','parser.py',20),
+  ('expresion -> expresion CONCAT expresion','expresion',3,'p_expresion_concatenacion','parser.py',31),
+  ('expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN','expresion',4,'p_expresion_imprimir','parser.py',35),
+  ('expresion -> NUMBER','expresion',1,'p_expresion_numero','parser.py',40),
+  ('expresion -> LPAREN expresion RPAREN','expresion',3,'p_expresion_parentesis','parser.py',44),
+  ('expresion -> QUOTE expresion QUOTE','expresion',3,'p_expresion_repeat','parser.py',48),
+  ('expresion -> CHARS','expresion',1,'p_repeat','parser.py',52),
 ]
