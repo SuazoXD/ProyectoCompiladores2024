@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESleftCONCATCHARS CONCAT IMPRIMIRRESULTADO LPAREN MINUS NUMBER PLUS QUOTE RPAREN TIMESinicio : expresionexpresion : expresion PLUS expresion\n| expresion MINUS expresion\n| expresion TIMES expresionexpresion : expresion CONCAT expresionexpresion : IMPRIMIRRESULTADO LPAREN expresion RPARENexpresion : NUMBERexpresion : LPAREN expresion RPARENexpresion : QUOTE expresion QUOTEexpresion : CHARS'
+_lr_signature = 'leftPLUSMINUSleftTIMESleftCONCATASSIGN CHARS COMA CONCAT ID IMPRIMIRRESULTADO LPAREN MINUS NUMBER PLUS QUOTE RPAREN TIMESinicio : expresion\n              | inicio expresionexpresion : expresion PLUS expresion\n                | expresion MINUS expresion\n                | expresion TIMES expresionexpresion : ID ASSIGN expresionexpresion : IMPRIMIRRESULTADO LPAREN expresion RPARENexpresion : CONCAT LPAREN lista_expresiones RPARENlista_expresiones : expresion\n                         | lista_expresiones COMA expresionexpresion : IDexpresion : QUOTE CHARS QUOTEexpresion : NUMBERexpresion : LPAREN expresion RPARENexpresion : CHARS'
     
-_lr_action_items = {'IMPRIMIRRESULTADO':([0,4,6,8,9,10,11,12,],[3,3,3,3,3,3,3,3,]),'NUMBER':([0,4,6,8,9,10,11,12,],[5,5,5,5,5,5,5,5,]),'LPAREN':([0,3,4,6,8,9,10,11,12,],[4,12,4,4,4,4,4,4,4,]),'QUOTE':([0,4,5,6,7,8,9,10,11,12,14,15,16,17,18,20,21,22,],[6,6,-7,6,-10,6,6,6,6,6,21,-2,-3,-4,-5,-8,-9,-6,]),'CHARS':([0,4,6,8,9,10,11,12,],[7,7,7,7,7,7,7,7,]),'$end':([1,2,5,7,15,16,17,18,20,21,22,],[0,-1,-7,-10,-2,-3,-4,-5,-8,-9,-6,]),'PLUS':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[8,-7,-10,8,8,-2,-3,-4,-5,8,-8,-9,-6,]),'MINUS':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[9,-7,-10,9,9,-2,-3,-4,-5,9,-8,-9,-6,]),'TIMES':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[10,-7,-10,10,10,10,10,-4,-5,10,-8,-9,-6,]),'CONCAT':([2,5,7,13,14,15,16,17,18,19,20,21,22,],[11,-7,-10,11,11,11,11,11,-5,11,-8,-9,-6,]),'RPAREN':([5,7,13,15,16,17,18,19,20,21,22,],[-7,-10,20,-2,-3,-4,-5,22,-8,-9,-6,]),}
+_lr_action_items = {'ID':([0,1,2,3,5,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[3,3,-1,-11,3,-15,-13,-2,3,3,3,3,3,3,-3,-4,-5,-6,-14,-12,-7,-8,3,]),'IMPRIMIRRESULTADO':([0,1,2,3,5,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[4,4,-1,-11,4,-15,-13,-2,4,4,4,4,4,4,-3,-4,-5,-6,-14,-12,-7,-8,4,]),'CONCAT':([0,1,2,3,5,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[6,6,-1,-11,6,-15,-13,-2,6,6,6,6,6,6,-3,-4,-5,-6,-14,-12,-7,-8,6,]),'QUOTE':([0,1,2,3,5,8,9,10,11,12,13,14,15,17,18,19,20,21,22,24,27,28,29,30,],[7,7,-1,-11,7,-15,-13,-2,7,7,7,7,7,7,27,-3,-4,-5,-6,-14,-12,-7,-8,7,]),'NUMBER':([0,1,2,3,5,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[9,9,-1,-11,9,-15,-13,-2,9,9,9,9,9,9,-3,-4,-5,-6,-14,-12,-7,-8,9,]),'LPAREN':([0,1,2,3,4,5,6,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[5,5,-1,-11,15,5,17,-15,-13,-2,5,5,5,5,5,5,-3,-4,-5,-6,-14,-12,-7,-8,5,]),'CHARS':([0,1,2,3,5,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,27,28,29,30,],[8,8,-1,-11,8,18,-15,-13,-2,8,8,8,8,8,8,-3,-4,-5,-6,-14,-12,-7,-8,8,]),'$end':([1,2,3,8,9,10,19,20,21,22,24,27,28,29,],[0,-1,-11,-15,-13,-2,-3,-4,-5,-6,-14,-12,-7,-8,]),'PLUS':([2,3,8,9,10,16,19,20,21,22,23,24,26,27,28,29,31,],[11,-11,-15,-13,11,11,-3,-4,-5,11,11,-14,11,-12,-7,-8,11,]),'MINUS':([2,3,8,9,10,16,19,20,21,22,23,24,26,27,28,29,31,],[12,-11,-15,-13,12,12,-3,-4,-5,12,12,-14,12,-12,-7,-8,12,]),'TIMES':([2,3,8,9,10,16,19,20,21,22,23,24,26,27,28,29,31,],[13,-11,-15,-13,13,13,13,13,-5,13,13,-14,13,-12,-7,-8,13,]),'ASSIGN':([3,],[14,]),'RPAREN':([3,8,9,16,19,20,21,22,23,24,25,26,27,28,29,31,],[-11,-15,-13,24,-3,-4,-5,-6,28,-14,29,-9,-12,-7,-8,-10,]),'COMA':([3,8,9,19,20,21,22,24,25,26,27,28,29,31,],[-11,-15,-13,-3,-4,-5,-6,-14,30,-9,-12,-7,-8,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,4,6,8,9,10,11,12,],[2,13,14,15,16,17,18,19,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'expresion':([0,1,5,11,12,13,14,15,17,30,],[2,10,16,19,20,21,22,23,26,31,]),'lista_expresiones':([17,],[25,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,14 +27,19 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> inicio","S'",1,None,None,None),
-  ('inicio -> expresion','inicio',1,'p_inicio','parser.py',12),
-  ('expresion -> expresion PLUS expresion','expresion',3,'p_expresion_binaria','parser.py',16),
-  ('expresion -> expresion MINUS expresion','expresion',3,'p_expresion_binaria','parser.py',17),
-  ('expresion -> expresion TIMES expresion','expresion',3,'p_expresion_binaria','parser.py',18),
-  ('expresion -> expresion CONCAT expresion','expresion',3,'p_expresion_concatenacion','parser.py',28),
-  ('expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN','expresion',4,'p_expresion_imprimir','parser.py',32),
-  ('expresion -> NUMBER','expresion',1,'p_expresion_numero','parser.py',37),
-  ('expresion -> LPAREN expresion RPAREN','expresion',3,'p_expresion_parentesis','parser.py',41),
-  ('expresion -> QUOTE expresion QUOTE','expresion',3,'p_expresion_repeat','parser.py',45),
-  ('expresion -> CHARS','expresion',1,'p_repeat','parser.py',49),
+  ('inicio -> expresion','inicio',1,'p_inicio','parser.py',14),
+  ('inicio -> inicio expresion','inicio',2,'p_inicio','parser.py',15),
+  ('expresion -> expresion PLUS expresion','expresion',3,'p_expresion_binaria','parser.py',23),
+  ('expresion -> expresion MINUS expresion','expresion',3,'p_expresion_binaria','parser.py',24),
+  ('expresion -> expresion TIMES expresion','expresion',3,'p_expresion_binaria','parser.py',25),
+  ('expresion -> ID ASSIGN expresion','expresion',3,'p_asignacion','parser.py',34),
+  ('expresion -> IMPRIMIRRESULTADO LPAREN expresion RPAREN','expresion',4,'p_expresion_imprimir','parser.py',42),
+  ('expresion -> CONCAT LPAREN lista_expresiones RPAREN','expresion',4,'p_expresion_concat','parser.py',47),
+  ('lista_expresiones -> expresion','lista_expresiones',1,'p_lista_expresiones','parser.py',53),
+  ('lista_expresiones -> lista_expresiones COMA expresion','lista_expresiones',3,'p_lista_expresiones','parser.py',54),
+  ('expresion -> ID','expresion',1,'p_expresion_variable','parser.py',62),
+  ('expresion -> QUOTE CHARS QUOTE','expresion',3,'p_expresion_cadena','parser.py',69),
+  ('expresion -> NUMBER','expresion',1,'p_expresion_numero','parser.py',74),
+  ('expresion -> LPAREN expresion RPAREN','expresion',3,'p_expresion_parentesis','parser.py',78),
+  ('expresion -> CHARS','expresion',1,'p_repeat','parser.py',83),
 ]

@@ -2,9 +2,8 @@ import ply.lex as lex
 
 # Lista de tokens
 tokens = (
-    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO'
-    # Si necesitas agregar más tokens, puedes hacerlo aquí:
-    # 'DIVIDE'  # Por ejemplo, para la división
+    'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO', 'ASSIGN', 'ID',
+    'COMA'
 )
 
 # Reglas de los tokens
@@ -14,18 +13,16 @@ t_TIMES = r'\*'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_NUMBER = r'\d+'
-t_CHARS = r'([a-zA-Z]+\s*)+'  # Palabras con letras y posibles espacios
-t_QUOTE = r'\''    # Comillas simples
-t_CONCAT = r'&'  # Símbolo de concatenación
-t_IMPRIMIRRESULTADO = r'ImprimirResultado'
+t_CHARS = r'\"[^\"]*\"'  # Palabras con letras y posibles espacios
+t_QUOTE = r'\''
+t_CONCAT = r'\'CONCAT\''
+t_IMPRIMIRRESULTADO = r"\'ImprimirResultado\'"
+t_ASSIGN = r'='
+t_ID = r"[a-zA-Z_][a-zA-Z0-9_]*"
+t_COMA = r','
 
-
-# Si necesitas agregar más tokens, puedes agregar las reglas aquí.
-# Ejemplo de un token para la división:
-# t_DIVIDE = r'\/'
-
-# Regla de ignorar espacios en blanco
-t_ignore = ' \t'
+# Regla de ignorar espacios en blanco y saltos de linea
+t_ignore = ' \t\n'
 
 # Manejo de errores
 def t_error(t):
@@ -35,9 +32,8 @@ def t_error(t):
 # Construir el lexer
 lexer = lex.lex()
 
+# Código de prueba
 if __name__ == "__main__":
-    data = '3 + 4 * (5 - 2)'  # Ejemplo de entrada
-    lexer.input(data)
 
     while True:
         tok = lexer.token()
