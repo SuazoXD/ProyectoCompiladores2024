@@ -3,51 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analizador de Expresiones</title>
+    <title>Lenguaje de Programación</title>
 
-    <!-- Añadimos estilos básicos para mejorar la apariencia -->
     <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #282c34;
-            color: #abb2bf;
-            padding: 20px;
-            margin: 0;
+        /* Variables de color */
+        :root {
+            --color-fondo: #1E2A38;
+            --color-texto: #E0E1DD;
+            --color-principal: #3A7CA5;
+            --color-secundario: #6FB98F;
+            --color-boton: #3A7CA5;
+            --color-boton-hover: #315E8B;
+            --color-borde: #3A7CA5;
+            --color-navbar: #273442;
+            --color-navbar-texto: #E0E1DD;
         }
 
+        /* Estilo global */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: var(--color-navbar);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-navbar-texto);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: var(--color-navbar-texto);
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-secundario);
+        }
+
+        /* Título Principal */
         h1 {
             text-align: center;
-            color: #61dafb;
+            color: var(--color-principal);
+            padding: 20px;
+            margin: 0;
+            background: var(--color-fondo);
+            border-bottom: 2px solid var(--color-principal);
         }
 
-        .form-container {
+        /* Contenedor Principal */
+        .container {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .main-container {
+            flex: 3;
+            background: var(--color-fondo);
+            border: 2px solid var(--color-borde);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            flex: 1;
+            background: var(--color-fondo);
+            border: 2px solid var(--color-borde);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Formulario */
+        .form-container {
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         textarea {
-            width: 800px;
-            height: 150px;
-            background-color: #1e2128;
-            color: #abb2bf;
-            border: 1px solid #61dafb;
+
+            width: 100%;
+            height: 120px;
+            background: #2C3E50;
+            color: var(--color-texto);
+            border: 1px solid var(--color-borde);
+            border-radius: 5px;
             padding: 10px;
             font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
         }
 
         button {
-            background-color: #61dafb;
-            color: #282c34;
+            background-color: var(--color-boton);
+            color: white;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #21a1f1;
+            background-color: var(--color-boton-hover);
         }
 
         .console-output {
@@ -61,51 +152,330 @@
 
         .output-line {
             margin-bottom: 10px;
+        /* Secciones de Salida */
+        .output-section {
+            margin-bottom: 20px;
         }
 
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
-            border-radius: 10px;
-            color: #fff;
+        h3 {
+            margin-top: 0;
+            color: var(--color-principal);
         }
 
         pre {
+            background: #2C3E50;
+            padding: 10px;
+            border: 1px solid var(--color-borde);
+            border-radius: 5px;
+            overflow-x: auto;
+            color: var(--color-texto);
             white-space: pre-wrap;
             word-wrap: break-word;
         }
 
-    </style>
+        /* Tabla de Desplazamiento-Reducción */
+        .table-container {
+            overflow-x: auto;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 8px;
+            border: 1px solid var(--color-borde);
+        }
+
+        table th {
+            background: var(--color-principal);
+            color: white;
+        }
+
+        table td {
+            background: #2C3E50;
+            color: var(--color-texto);
+        }
+
+        /* Estilo del árbol sintáctico jerárquico */
+        .tree {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tree ul {
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tree ul li {
+            margin: 10px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tree ul li:before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 0;
+            border-left: 2px solid var(--color-principal);
+            border-bottom: 2px solid var(--color-principal);
+            width: 10px;
+            height: 10px;
+        }
+
+        .tree ul li span {
+            display: inline-block;
+            padding: 5px 10px;
+            background: var(--color-principal);
+            color: white;
+            border-radius: 3px;
+        }
+
+        .tree ul ul {
+            margin-left: 20px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--color-principal);
+        }
+
+        /* Lista de Funciones */
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+            padding: 8px;
+            background: #2C3E50;
+            border: 1px solid var(--color-borde);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: var(--color-secundario);
+            color: white;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Analizador de Expresiones</h1>
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">Lenguaje de Programación</a>
+        <ul>
+            <li><a href="#">Grupo</a></li>
+            <li><a href="#">#</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+    </nav>
 
-    <div class="form-container">
-        <form method="POST" action="/">
-            <textarea name="code" placeholder="Escribe tu expresión matemática aquí..."></textarea><br><br>
-            <button type="submit">Analizar</button>
-        </form>
+    <h1>Lenguaje de Programación</h1>
+
+    <div class="container">
+        <!-- Contenedor principal -->
+        <div class="main-container">
+            <!-- Formulario -->
+            <div class="form-container">
+                <form method="POST" action="/">
+                    <textarea name="code" placeholder="Escribe tu expresión aquí..."></textarea>
+                    <div class="buttons">
+                        <button type="submit">Analizar</button>
+                        <button type="button" id="clear-button">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tokens Encontrados -->
+            <div class="output-section">
+                <h3>Tokens Encontrados:</h3>
+                <pre id="tokens">{{ result.lexical }}</pre>
+            </div>
+
+            <!-- Resultado Final -->
+            <div class="output-section">
+                <h3>Resultado Final:</h3>
+                <pre>{{ result.operation }}</pre>
+            </div>
+
+            <!-- Árbol Sintáctico -->
+            <div class="output-section">
+                <h3>Árbol Sintáctico:</h3>
+                <div id="tree-container" class="tree"></div>
+            </div>
+
+            <!-- Desplazamiento-Reducción -->
+            <div class="output-section">
+                <h3>Desplazamiento-Reducción:</h3>
+                <div class="table-container">
+                    <table id="dr-table">
+                        <thead>
+                            <tr>
+                                <th>Pila</th>
+                                <th>Entrada</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra lateral con funciones -->
+        <div class="sidebar">
+            <h3>Funciones Disponibles</h3>
+            <ul>
+                <li>numero + numero</li>
+                <li>numero numero+</li>
+                <li>numero * numero</li>
+                <li>numero numero*</li>
+                <li>numero - numero</li>
+                <li>numero numero-</li>
+                <li>numero / numero</li>
+                <li>numero numero/</li>
+                <li>(numero + numero)</li>
+                <li>(numero numero+)</li>
+                <li>(numero * numero)</li>
+                <li>(numero numero*)</li>
+                <li>(numero - numero)</li>
+                <li>(numero numero-)</li>
+                <li>(numero / numero)</li>
+                <li>(numero numero/)</li>
+                <li>ImprimirResultado(numero + numero)</li>
+                <li>(ImprimirResultado(numero + numero))</li>
+                <li>ImprimirResultado(numero * numero)</li>
+                <li>ImprimirResultado(numero - numero)</li>
+                <li>ImprimirResultado(numero / numero)</li>
+                <li>ImprimirResultado(numero numero+)</li>
+                <li>(ImprimirResultado(numero numero+))</li>
+                <li>ImprimirResultado(numero numero*)</li>
+                <li>ImprimirResultado(numero numero-)</li>
+                <li>ImprimirResultado(numero numero/)</li>
+                <li>numero * 'Hola mundo'</li>
+                <li>(numero * 'Hola mundo')</li>
+                <li>(numero * Hola mundo)</li>
+                <li>(Hola mundo * numero)</li>
+                <li>ImprimirResultado(numero * 'Hola mundo')</li>
+                <li>(ImprimirResultado(numero * 'Hola mundo'))</li>
+                <li>ImprimirResultado(numero * 'Hola mundo con espacios')</li>
+                <li>ImprimirResultado('Hola mundo con espacios' * numero)</li>
+                <li>"A=Soy + B=feliz + C='con esta clase'"</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Sección para mostrar la salida de la consola -->
-    <div class="console-output">
-        <h3>Análisis Léxico:</h3>
-        {% if result %}
-        <div class="output-line">Tokens encontrados:</div>
-        <pre>{{ result.lexical }}</pre>
-        
-        <h3>Análisis Sintáctico:</h3>
-        <div class="output-line">Árbol de Sintaxis:</div>
-        <pre>{{ result.syntax }}</pre>
-        
-        <h3>Resultado Final:</h3>
-        <div class="output-line">Resultado de la operación:</div>
-        <pre>{{ result.operation }}</pre>
-        {% endif %}
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tokensElement = document.getElementById("tokens");
+            const treeContainer = document.getElementById("tree-container");
+            const drTableBody = document.querySelector("#dr-table tbody");
+            const clearButton = document.getElementById("clear-button");
+            const textarea = document.querySelector("textarea");
+            const preElements = document.querySelectorAll(".output-section pre");
+
+            if (tokensElement && treeContainer && drTableBody && clearButton) {
+                const tokensText = tokensElement.textContent.trim();
+                if (tokensText) {
+                    const tokens = tokensText.split("\n").map(line => {
+                        const [type, value] = line.split(", Valor: ");
+                        return { type: type.trim().toUpperCase(), value: value.trim() };
+                    });
+
+                    // Categorizar tokens
+                    const Expresion = tokens.filter(t => !isNaN(t.value));
+                    const operaciones = tokens.filter(t => isNaN(t.value));
+
+                    // Datos de desplazamiento-reducción dinámicos
+                    const drSteps = [
+                        { stack: '', input: tokens.map(t => t.value).join(' '), action: 'Inicial' },
+                    ];
+
+                    tokens.forEach((token, index) => {
+                        const stack = drSteps[drSteps.length - 1].stack + ' ' + token.value;
+                        const input = tokens.slice(index + 1).map(t => t.value).join(' ');
+                        const action = (token.type === 'PLUS' || token.type === 'MINUS' || token.type === 'MULTIPLY' || token.type === 'DIVIDE') ? 'Shift' : `Reduce: ${token.type}`;
+                        drSteps.push({ stack: stack.trim(), input: input.trim(), action });
+                    });
+
+                    // Construcción del árbol sintáctico jerárquico
+                    const renderHierarchicalTree = (Expresion, operaciones) => {
+                        const root = document.createElement('ul');
+
+                        // Categoría Expresion
+                        const ExpresionNode = document.createElement('li');
+                        ExpresionNode.innerHTML = `<span>Expresion</span>`;
+                        const ExpresionList = document.createElement('ul');
+                        Expresion.forEach(n => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<span>${n.value}</span>`;
+                            ExpresionList.appendChild(li);
+                        });
+                        ExpresionNode.appendChild(ExpresionList);
+                        root.appendChild(ExpresionNode);
+
+                        // Categoría Operación
+                        const operacionNode = document.createElement('li');
+                        operacionNode.innerHTML = `<span>Operación</span>`;
+                        const operacionList = document.createElement('ul');
+                        operaciones.forEach(op => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<span>${op.value}</span>`;
+                            operacionList.appendChild(li);
+                        });
+                        operacionNode.appendChild(operacionList);
+                        root.appendChild(operacionNode);
+
+                        treeContainer.appendChild(root);
+                    };
+
+                    // Renderizar tabla de desplazamiento-reducción
+                    const renderDRTable = (steps) => {
+                        steps.forEach(step => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `<td>${step.stack}</td><td>${step.input}</td><td>${step.action}</td>`;
+                            drTableBody.appendChild(row);
+                        });
+                    };
+
+                    // Llamar a las funciones
+                    renderHierarchicalTree(Expresion, operaciones);
+                    renderDRTable(drSteps);
+                }
+            }
+
+            // Funcionalidad del botón de limpiar
+            clearButton.addEventListener("click", function () {
+                textarea.value = '';
+                preElements.forEach(pre => pre.textContent = '');
+                treeContainer.innerHTML = '';
+                drTableBody.innerHTML = '';
+            });
+        });
+    </script>
 
 </body>
 </html>

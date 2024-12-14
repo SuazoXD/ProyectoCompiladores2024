@@ -3,13 +3,14 @@ import ply.lex as lex
 # Lista de tokens
 tokens = (
     'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'LPAREN', 'RPAREN', 'CHARS', 'QUOTE', 'CONCAT', 'IMPRIMIRRESULTADO', 'ASSIGN', 'ID',
-    'COMA'
+    'COMA', 'DIVIDE'
 )
 
 # Reglas de los tokens
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
+t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_NUMBER = r'\d+'
@@ -21,7 +22,6 @@ t_ASSIGN = r'='
 t_ID = r"[a-zA-Z_][a-zA-Z0-9_]*"
 t_COMA = r','
 
-# Regla de ignorar espacios en blanco y saltos de linea
 t_ignore = ' \t\n'
 
 # Manejo de errores
